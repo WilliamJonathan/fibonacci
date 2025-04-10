@@ -17,17 +17,13 @@ fn main() {
 }
 
 // Formula para encontrar o n-ésimo número de Fibonacci
-fn formula(n: u32) -> f64 {
+fn formula(n: u32) -> u64 {
     let raiz_de_cinco  =  (5 as f64).sqrt();
-    let primeira_parte =  (1 as f64 / raiz_de_cinco) * ((1 as f64 + raiz_de_cinco) / 2 as f64 );
-    let primeira_parte =  primeira_parte.powf(n as f64);
+    let primeira_parte =  (1.0 / raiz_de_cinco) * ((1.0 + raiz_de_cinco) / 2.0 ).powf(n as f64);
 
-    println!("Primeira parte: {}", primeira_parte);
-
-    let segunda_parte  =  (1 as f64  / raiz_de_cinco) * ((1 as f64  - raiz_de_cinco) / 2 as f64 );
-    let segunda_parte  =  segunda_parte.powf(n as f64);
+    let segunda_parte  =  (1.0  / raiz_de_cinco) * ((1.0  - raiz_de_cinco) / 2.0 ).powf(n as f64);
 
     let resultado = primeira_parte - segunda_parte;
 
-    return resultado;
+    resultado.round() as u64
 }
