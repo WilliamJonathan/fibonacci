@@ -8,8 +8,13 @@ fn main() {
         .read_line(&mut numero)
         .expect("Falha ao ler o numero");
     
-    let numero: u32 = numero.trim().parse()
-        .expect("Por favor digite um numero");
+    let numero: u32 = match  numero.trim().parse() {
+        Ok(valor) => valor,
+        Err(_) => {
+            println!("Por favor, digite apenas números inteiros positivos.");
+            return;
+        }
+    };
 
     let resultado = formula(numero);
     
