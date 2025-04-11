@@ -13,8 +13,8 @@ fn main() {
             );
         }
         primeira_execucao = false;
+        println!("Entre com o valor: ");
         let mut numero = String::new();
-        
         io::stdin()
             .read_line(&mut numero)
             .expect("\n---------------------\n\
