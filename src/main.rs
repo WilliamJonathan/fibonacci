@@ -1,13 +1,25 @@
 use std::io;
 fn main() {
+    let mut primeira_execucao = true;
     loop {
-        println!("Digite para saber o n-ésimo numero de Fibonacci (ou digite 'sair' para encerrar):");
-    
+        if primeira_execucao {
+            println!(
+                "\n************************************************************************************************\n\
+                 * Este programa calcula o n-ésimo número de Fibonacci usando a fórmula de Binet.               *\n\
+                 * A fórmula é a seguinte: F(n) = (φ^n - (1 - φ)^n) / √5, onde φ é a razão áurea.               *\n\
+                 * O programa aceita números inteiros positivos e retorna o número de Fibonacci correspondente. *\n\
+                 * Para sair, digite 'sair'.                                                                    *\n\
+            ************************************************************************************************\n"
+            );
+        }
+        primeira_execucao = false;
         let mut numero = String::new();
         
         io::stdin()
             .read_line(&mut numero)
-            .expect("Falha ao ler o numero");
+            .expect("\n---------------------\n\
+            Falha ao ler o numero\n\
+            ---------------------\n");
 
         let numero = numero.trim();
 
@@ -21,14 +33,18 @@ fn main() {
         let numero: u32 = match  numero.trim().parse() {
             Ok(valor) => valor,
             Err(_) => {
-                println!("Por favor, digite apenas números inteiros positivos.");
+                println!("\n----------------------------------------------------\n\
+                Por favor, digite apenas números inteiros positivos.\n\
+                ----------------------------------------------------\n");
                 continue;
             }
         };
 
         let resultado = formula(numero);
         
-        println!("O numero de Fibonacci desta posição é: {}", resultado);
+        println!("\n----------------------------------------------------\n\
+        O número de Fibonacci na posição {} é: {}\n\
+        ----------------------------------------------------\n", numero, resultado);
     }
 }
 
