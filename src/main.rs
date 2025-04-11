@@ -1,24 +1,35 @@
 use std::io;
 fn main() {
-    println!("Digite para saber o n-ésimo numero de Fibonacci:");
+    loop {
+        println!("Digite para saber o n-ésimo numero de Fibonacci (ou digite 'sair' para encerrar):");
     
-    let mut numero = String::new();
-    
-    io::stdin()
-        .read_line(&mut numero)
-        .expect("Falha ao ler o numero");
-    
-    let numero: u32 = match  numero.trim().parse() {
-        Ok(valor) => valor,
-        Err(_) => {
-            println!("Por favor, digite apenas números inteiros positivos.");
-            return;
-        }
-    };
+        let mut numero = String::new();
+        
+        io::stdin()
+            .read_line(&mut numero)
+            .expect("Falha ao ler o numero");
 
-    let resultado = formula(numero);
-    
-    println!("O numero de Fibonacci desta posição é: {}", resultado);
+        let numero = numero.trim();
+
+        // verifica se o usuário deseja sair
+        if numero.eq_ignore_ascii_case("sair") {
+            println!("Saindo...");
+            break;
+        }
+        
+        // Verifica se o número é um inteiro positivo
+        let numero: u32 = match  numero.trim().parse() {
+            Ok(valor) => valor,
+            Err(_) => {
+                println!("Por favor, digite apenas números inteiros positivos.");
+                continue;
+            }
+        };
+
+        let resultado = formula(numero);
+        
+        println!("O numero de Fibonacci desta posição é: {}", resultado);
+    }
 }
 
 // Formula para encontrar o n-ésimo número de Fibonacci
